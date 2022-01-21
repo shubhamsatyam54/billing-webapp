@@ -21,3 +21,6 @@ class Rate(models.Model):
 
 class Invoice(models.Model):
     invoice_id=models.CharField(max_length=50,primary_key=True,blank=False)
+    total = models.FloatField()
+
+
