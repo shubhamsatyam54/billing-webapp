@@ -18,3 +18,6 @@ class Rate(models.Model):
     party=models.ForeignKey(Party,on_delete=models.SET_NULL,null=True)
     rt_name=models.CharField(max_length=20,default="default")
     cost=models.FloatField(blank=False)
+
+class Invoice(models.Model):
+    invoice_id=models.CharField(max_length=50,primary_key=True,blank=False)
