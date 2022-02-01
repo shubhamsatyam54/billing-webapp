@@ -15,9 +15,11 @@ Including another URLconf
 """
 from bill import views
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   # path('', views.home),
+    path(r'chaining/', include('smart_selects.urls')),
+    path("",include('bill.urls'))
 ]
+handler404 = 'bill.views.error_404_view'

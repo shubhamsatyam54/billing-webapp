@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-f#-k6i4dg_a)4jp&6=qs$&j(c1q-a08j=if04i=%@fm-eeh&^i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost","localhost:1234"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bill.apps.BillConfig',
+    'smart_selects'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#JQUERY_URL = True
+USE_DJANGO_JQUERY = True
