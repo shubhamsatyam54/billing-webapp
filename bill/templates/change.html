@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script>
+
+      function showAlert() {
+    var myText = "This can be whatever text you like!";
+    alert (myText);
+  }
+     $(document).ready(function(){
+
+    var x = document.getElementsByClassName(field-rate);
+         alert(x.value);
+         x.setAttribute("onkeypress","showAlert()")
+         alert("hello");
+  });
+    </script>
+
+
+{% endblock %}
+

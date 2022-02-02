@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bill.apps.BillConfig',
-    'smart_selects'
+    'smart_selects',
+    'ajax_select',
+    'computedfields',
 ]
 
 MIDDLEWARE = [

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import F
 from .models import Stock, Rate, Party, Product, Sales, Salesitem, Purchase,PurchaseItems, Batch
 
 
@@ -15,16 +16,25 @@ class PurchaseV(admin.ModelAdmin):
 
 class sales_items(admin.TabularInline):
     model = Salesitem
-    readonly_fields = ['sgst', 'igst', 'cgst',]
+    fields = ['product','batch','quan','rate','total']
+    readonly_fields = ['total']
 
-    #readonly_fields =
 
-    def sgst(self,rate):
-        return rate*2
+
+    def total(self,obj):
+
+
+        return  obj.rate
+
+
 
 class sales(admin.ModelAdmin):
 
-    inlines = [sales_items, ]
+    inlines = [sales_items,]
+    change_form_template = 'change.html'
+
+
+
 
 
 class ProductV(admin.ModelAdmin):
@@ -49,7 +59,7 @@ admin.site.register(Stock, StockV)
 admin.site.register(Rate)
 admin.site.register(Party)
 admin.site.register(Sales, sales)
-admin.site.register(Salesitem)
+#admin.site.register(Salesitem)
 admin.site.register(Purchase, PurchaseV)
 admin.site.register(PurchaseItems)
 admin.site.register(Batch)

@@ -1,5 +1,6 @@
 from datetime import date
 from django.core.exceptions import ValidationError
+from ajax_select.fields import AutoCompleteField
 from django.db import models
 from smart_selects.db_fields import GroupedForeignKey , ChainedForeignKey , ChainedManyToManyField
 
@@ -99,12 +100,19 @@ class Salesitem(models.Model):
         auto_choose=False,
         default=None)
     quan = models.IntegerField(null=True,blank=False,)
-    rate = models.FloatField(default=0)
+    rate = models.DecimalField(decimal_places=2,max_digits=9)
     cost = models.FloatField(default=0)
-    igst = models.FloatField(null=True)
-    cgst = models.FloatField(null=True)
-    sgst = models.FloatField(null=True)
+    igst = models.FloatField(null=True,blank=True)
+    cgst = models.FloatField(null=True,blank=True)
+    sgst = models.FloatField(null=True,blank=True)
 
+    def get_cost(self):
+        result = self.rate*self.quan
+        return result
+
+    def save(self, *args, **kwargs):
+        self.cost=self.get_cost()
+        super(Salesitem,self).save(*args,**kwargs)
 
     def __str__(self):
         return f"{self.cost}"
